@@ -1,10 +1,12 @@
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
-  <div class="container-fluid">
-    <a class="navbar-brand d-flex align-items-center gap-2" href="/listings">
-      <i class="fa-regular fa-compass"></i>
-      <span class="fw-bold fs-5 text-danger">Wanderlust</span>
+<nav class="navbar navbar-expand-md navbar-custom sticky-top">
+  <div class="container-fluid px-md-4">
+    <!-- Brand Logo -->
+    <a class="brand-logo me-3" href="/listings">
+      <i class="fa-solid fa-compass"></i>
+      <span class="brand-name">Wanderlust</span>
     </a>
 
+    <!-- Mobile Toggler Button -->
     <button
       class="navbar-toggler"
       type="button"
@@ -17,41 +19,48 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
+    <!-- Collapsible Menu -->
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav me-auto">
-        <a class="nav-link" href="/listings">Explore</a>
-      </div>
-
       <!-- Search Bar -->
-      <div class="navbar-nav ms-auto me-3">
-        <form class="d-flex" role="search" action="/listings" method="GET">
+      <div class="search-form-container mx-md-auto">
+        <form class="search-pill-wrapper" role="search" action="/listings" method="GET">
           <input
-            class="form-control search-inp"
+            class="search-pill-input"
             type="search"
             name="search"
-            placeholder="Search destinations"
+            placeholder="Search destinations..."
+            aria-label="Search"
             value="<%= typeof search !== 'undefined' && search ? search : '' %>"
           />
-          <button class="btn btn-search" type="submit">
-            <i class="fa-solid fa-magnifying-glass"></i>Search
+          <button class="search-pill-btn" type="submit" title="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
           </button>
         </form>
       </div>
 
-      <!-- Auth Links -->
-      <div class="navbar-nav ms-auto align-items-center">
-        <a class="nav-link" href="/listings/new">Airbnb your home</a>
+      <!-- Right Navigation / Auth Links -->
+      <div class="navbar-nav ms-md-auto align-items-md-center gap-1 mt-2 mt-md-0">
+        <a class="nav-link-custom nav-host-btn" href="/listings/new">
+          <i class="fa-solid fa-house-chimney me-1 text-danger"></i> Airbnb your home
+        </a>
+
         <% if (!currUser) { %>
-          <a class="nav-link" href="/signup"><b>Sign up</b></a>
-          <a class="nav-link" href="/login"><b>Log in</b></a>
+          <a class="nav-link-custom" href="/signup">Sign up</a>
+          <a class="nav-link-custom" href="/login"><b>Log in</b></a>
         <% } else { %>
-          <span class="nav-link text-secondary">
-            Hi, <b><%= currUser.username %></b>
-            <% if (currUser.role === "admin") { %>
-              <span class="badge bg-danger ms-1" style="font-size: 0.75rem;">Admin</span>
-            <% } %>
-          </span>
-          <a class="nav-link" href="/logout"><b>Log out</b></a>
+          <div class="d-flex align-items-center flex-wrap gap-2 my-1 my-md-0">
+            <span class="user-pill-badge">
+              <span class="user-avatar-circle"><%= currUser.username ? currUser.username.charAt(0).toUpperCase() : 'U' %></span>
+              <span><%= currUser.username %></span>
+              <% if (currUser.role === "admin") { %>
+                <span class="admin-tag">Admin</span>
+              <% } %>
+            </span>
+            <a class="nav-link-custom text-danger" href="/logout" title="Log out">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              <span class="d-md-none ms-1">Log out</span>
+            </a>
+          </div>
         <% } %>
       </div>
     </div>

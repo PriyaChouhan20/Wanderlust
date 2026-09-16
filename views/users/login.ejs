@@ -1,44 +1,70 @@
 <% layout("/layouts/boilerplate") %>
 
-<div class="row mt-3">
-    <div class="col-12 col-md-6 offset-md-3">
-        <h1 class="mb-3">Login</h1>
-
-        <form action="/login" method="POST" class="needs-validation" novalidate>
-            <!-- Username -->
-            <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input
-                    name="username"
-                    id="username"
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter username"
-                    required
-                />
-                <div class="invalid-feedback">
-                    Please enter your username.
+<div class="row justify-content-center mt-3 mb-5">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+        <div class="form-card-container">
+            
+            <div class="form-header">
+                <div class="form-header-icon">
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i>
                 </div>
+                <h2>Welcome Back</h2>
+                <p>Log in to manage your listings and reviews</p>
             </div>
 
-            <!-- Password -->
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input
-                    name="password"
-                    id="password"
-                    type="password"
-                    class="form-control"
-                    placeholder="Enter password"
-                    required
-                />
-                <div class="invalid-feedback">
-                    Please enter your password.
+            <form action="/login" method="POST" class="needs-validation" novalidate>
+                <!-- Username -->
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light"><i class="fa-regular fa-user text-secondary"></i></span>
+                        <input
+                            name="username"
+                            id="username"
+                            type="text"
+                            class="form-control"
+                            placeholder="Enter your username"
+                            required
+                        />
+                    </div>
+                    <div class="invalid-feedback">
+                        Please enter your username.
+                    </div>
                 </div>
-            </div>
 
-            <!-- Button -->
-            <button class="btn btn-success">Login</button>
-        </form>
+                <!-- Password -->
+                <div class="mb-4">
+                    <label for="password" class="form-label">Password</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light"><i class="fa-solid fa-key text-secondary"></i></span>
+                        <input
+                            name="password"
+                            id="password"
+                            type="password"
+                            class="form-control"
+                            placeholder="Enter your password"
+                            required
+                        />
+                    </div>
+                    <div class="invalid-feedback">
+                        Please enter your password.
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="d-grid mb-3">
+                    <button class="btn btn-primary-custom py-2 fs-6">
+                        <i class="fa-solid fa-lock me-1"></i> Log In
+                    </button>
+                </div>
+
+                <!-- Signup Switcher -->
+                <div class="text-center pt-3 border-top">
+                    <span class="text-secondary small">Don't have an account yet?</span>
+                    <a href="/signup" class="text-danger fw-bold ms-1 small">Create account</a>
+                </div>
+            </form>
+
+        </div>
     </div>
 </div>

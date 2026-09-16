@@ -5,12 +5,12 @@ const mapElement = document.getElementById("map");
 if (!mapToken) {
     if (mapElement) {
         mapElement.innerHTML =
-            '<p class="text-danger p-3">Map configuration is missing.</p>';
+            '<div class="p-4 text-center text-muted bg-light rounded-3"><i class="fa-solid fa-map-pin me-2 text-danger"></i>Map configuration is missing.</div>';
     }
 } else if (!listingLocation) {
     if (mapElement) {
         mapElement.innerHTML =
-            '<p class="text-muted p-3">Location is not available.</p>';
+            '<div class="p-4 text-center text-muted bg-light rounded-3"><i class="fa-solid fa-location-slash me-2 text-secondary"></i>Location coordinate details are not available.</div>';
     }
 } else {
     fetch(
@@ -38,14 +38,13 @@ if (!mapToken) {
 
         map.addControl(new mapboxgl.NavigationControl());
 
-        new mapboxgl.Marker({ color: "#fe424d" })
+        new mapboxgl.Marker({ color: "#ff385c" })
             .setLngLat(coordinates)
             .setPopup(
                 new mapboxgl.Popup({ offset: 25 })
                     .setHTML(`
-                        <strong>${listingTitle}</strong>
-                        <br>
-                        ${listingLocation}
+                        <h6 class="fw-bold mb-1">${listingTitle}</h6>
+                        <p class="text-secondary small mb-0">${listingLocation}</p>
                     `)
             )
             .addTo(map);
@@ -58,7 +57,7 @@ if (!mapToken) {
         console.error("Mapbox error:", error);
         if (mapElement) {
             mapElement.innerHTML =
-                '<p class="text-muted p-3">Unable to load map for this location.</p>';
+                '<div class="p-4 text-center text-muted bg-light rounded-3"><i class="fa-solid fa-triangle-exclamation me-2 text-warning"></i>Unable to load map for this location.</div>';
         }
     });
 }

@@ -1,5 +1,6 @@
 <% layout("/layouts/boilerplate") %>
 
+<!-- Filters Bar & Tax Toggle -->
 <div id="filters">
     <div class="filter-wrapper">
         <a href="/listings?category=Trending" class="filter <%= typeof category !== 'undefined' && category === 'Trending' ? 'active-filter' : '' %>">
@@ -48,51 +49,78 @@
         </a>
     </div>
 
-    <!-- Tax Toggle -->
-    <div class="tax-toggle">
-        <div class="form-check-reverse form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="taxSwitch">
+    <!-- Tax Toggle Switch -->
+    <div class="tax-toggle-box">
+        <div class="form-check form-switch m-0 d-flex align-items-center gap-2">
+            <input class="form-check-input mt-0" type="checkbox" role="switch" id="taxSwitch">
             <label class="form-check-label" for="taxSwitch">Display total after taxes</label>
         </div>
     </div>
 </div>
 
+<!-- Active Search or Filter Banner -->
 <% if (typeof search !== 'undefined' && search) { %>
-    <div class="mt-2 mb-3 d-flex align-items-center justify-content-between">
-        <h5>Search results for: <i>"<%= search %>"</i></h5>
-        <a href="/listings" class="btn btn-sm btn-outline-dark">Clear Search</a>
+    <div class="my-3 p-3 bg-light rounded-3 d-flex flex-wrap align-items-center justify-content-between gap-2 border">
+        <div>
+            <span class="text-secondary small">Search results for:</span>
+            <h5 class="mb-0 fw-bold">"<%= search %>"</h5>
+        </div>
+        <a href="/listings" class="btn btn-sm btn-outline-dark rounded-pill px-3">
+            <i class="fa-solid fa-xmark me-1"></i> Clear Search
+        </a>
     </div>
 <% } else if (typeof category !== 'undefined' && category) { %>
-    <div class="mt-2 mb-3 d-flex align-items-center justify-content-between">
-        <h5>Category: <i>"<%= category %>"</i></h5>
-        <a href="/listings" class="btn btn-sm btn-outline-dark">Show All</a>
+    <div class="my-3 p-3 bg-light rounded-3 d-flex flex-wrap align-items-center justify-content-between gap-2 border">
+        <div>
+            <span class="text-secondary small">Category filtered by:</span>
+            <h5 class="mb-0 fw-bold"><%= category %></h5>
+        </div>
+        <a href="/listings" class="btn btn-sm btn-outline-dark rounded-pill px-3">
+            <i class="fa-solid fa-xmark me-1"></i> Show All Listings
+        </a>
     </div>
 <% } %>
 
+<!-- Listings Grid / Empty State -->
 <% if (allListings.length === 0) { %>
-    <div class="col-6 offset-3 text-center my-5">
-        <h4>No listings found!</h4>
-        <p class="text-secondary">Try searching for something else or browse all destinations.</p>
-        <a href="/listings" class="btn btn-dark mt-2">View All Listings</a>
+    <div class="empty-state-card">
+        <div class="empty-state-icon">
+            <i class="fa-solid fa-magnifying-glass-location"></i>
+        </div>
+        <h3 class="fw-bold">No places found</h3>
+        <p class="text-secondary mb-3">Try adjusting your search or category filter to discover more places.</p>
+        <a href="/listings" class="btn btn-primary-custom rounded-pill px-4">
+            <i class="fa-solid fa-rotate-left me-1"></i> View All Listings
+        </a>
     </div>
 <% } else { %>
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4 mt-1">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 mt-1">
         <% for(let listing of allListings) { %>
             <div class="col">
                 <a href="/listings/<%= listing._id %>" class="listing-link">
-                    <div class="card h-100">
-                        <img
-                            src="<%= listing.image && listing.image.url ? listing.image.url : 'https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?auto=format&fit=crop&w=800&q=60' %>"
-                            class="card-img-top"
-                            alt="listing_image"
-                        />
-                        <div class="card-img-overlay"></div>
-                        <div class="card-body">
-                            <p class="card-text">
-                                <b><%= listing.title %></b><br>
-                                <span class="base-price">&#8377; <%= listing.price ? listing.price.toLocaleString("en-IN") : 0 %></span> / night
-                                <i class="tax-info text-secondary">&nbsp; +18% GST</i>
-                            </p>
+                    <div class="listing-card">
+                        <div class="card-img-wrapper">
+                            <img
+                                src="<%= listing.image && listing.image.url ? listing.image.url : 'https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?auto=format&fit=crop&w=800&q=60' %>"
+                                alt="<%= listing.title %>"
+                                loading="lazy"
+                            />
+                            <% if (listing.category) { %>
+                                <span class="card-category-badge"><%= listing.category %></span>
+                            <% } %>
+                            <span class="card-heart-btn"><i class="fa-regular fa-heart"></i></span>
+                        </div>
+                        <div class="card-info">
+                            <div class="card-title-text"><%= listing.title %></div>
+                            <div class="card-sub-text">
+                                <i class="fa-solid fa-location-dot text-danger me-1"></i>
+                                <%= listing.location %><% if (listing.country) { %>, <%= listing.country %><% } %>
+                            </div>
+                            <div class="card-price-text">
+                                <span class="card-price-bold">&#8377; <%= listing.price ? listing.price.toLocaleString("en-IN") : 0 %></span>
+                                <span class="text-secondary">/ night</span>
+                                <span class="tax-info gst-badge">&nbsp;+18% GST</span>
+                            </div>
                         </div>
                     </div>
                 </a>
@@ -101,13 +129,14 @@
     </div>
 <% } %>
 
+<!-- Tax Toggle JavaScript -->
 <script>
     const taxSwitch = document.getElementById("taxSwitch");
     if (taxSwitch) {
-        taxSwitch.addEventListener("click", () => {
+        taxSwitch.addEventListener("change", () => {
             const taxInfo = document.getElementsByClassName("tax-info");
             for (let info of taxInfo) {
-                if (info.style.display !== "inline") {
+                if (taxSwitch.checked) {
                     info.style.display = "inline";
                 } else {
                     info.style.display = "none";

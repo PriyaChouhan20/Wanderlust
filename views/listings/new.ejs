@@ -1,129 +1,154 @@
 <% layout("/layouts/boilerplate") %>
 
-<div class="row mt-3">
-  <div class="col-12 col-md-8 offset-md-2">
-    <h1>Create a New Listing</h1>
-
-    <form
-      method="POST"
-      action="/listings"
-      class="needs-validation"
-      novalidate
-    >
-      <!-- TITLE -->
-      <div class="mb-3">
-        <label for="title" class="form-label">Title</label>
-        <input
-          type="text"
-          class="form-control"
-          id="title"
-          name="listing[title]"
-          placeholder="Add a catchy title"
-          required
-        />
-        <div class="invalid-feedback">
-          Please enter a title.
+<div class="row justify-content-center mt-2 mb-5">
+  <div class="col-12 col-md-10 col-lg-8 col-xl-7">
+    <div class="form-card-container">
+      
+      <!-- Form Header -->
+      <div class="form-header">
+        <div class="form-header-icon">
+          <i class="fa-solid fa-house-medical"></i>
         </div>
+        <h2>Create a New Listing</h2>
+        <p>Share your place with travelers from all around the world</p>
       </div>
 
-      <!-- DESCRIPTION -->
-      <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
-        <textarea
-          class="form-control"
-          id="description"
-          name="listing[description]"
-          rows="3"
-          placeholder="Describe your place"
-          required
-        ></textarea>
-        <div class="invalid-feedback">
-          Please enter a description.
-        </div>
-      </div>
-
-      <!-- IMAGE -->
-      <div class="mb-3">
-        <label for="image" class="form-label">Image URL</label>
-        <input
-          type="text"
-          class="form-control"
-          id="image"
-          name="listing[image][url]"
-          placeholder="https://images.unsplash.com/..."
-        />
-      </div>
-
-      <!-- PRICE & CATEGORY -->
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <label for="price" class="form-label">Price</label>
-          <input
-            type="number"
-            class="form-control"
-            id="price"
-            name="listing[price]"
-            placeholder="1200"
-            min="1"
-            required
-          />
-          <div class="invalid-feedback">
-            Please enter a valid price.
-          </div>
-        </div>
-
-        <div class="col-md-6 mb-3">
-          <label for="category" class="form-label">Category</label>
-          <select name="listing[category]" id="category" class="form-select">
-            <option value="Trending">Trending</option>
-            <option value="Rooms">Rooms</option>
-            <option value="Iconic Cities">Iconic Cities</option>
-            <option value="Mountains">Mountains</option>
-            <option value="Castles">Castles</option>
-            <option value="Amazing Pools">Amazing Pools</option>
-            <option value="Camping">Camping</option>
-            <option value="Farms">Farms</option>
-            <option value="Arctic">Arctic</option>
-            <option value="Domes">Domes</option>
-            <option value="Boats">Boats</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- COUNTRY + LOCATION -->
-      <div class="row">
-        <div class="col-md-4 mb-3">
-          <label for="country" class="form-label">Country</label>
+      <form
+        method="POST"
+        action="/listings"
+        class="needs-validation"
+        novalidate
+      >
+        <!-- TITLE -->
+        <div class="mb-3">
+          <label for="title" class="form-label">Property Title</label>
           <input
             type="text"
             class="form-control"
-            id="country"
-            name="listing[country]"
-            placeholder="India"
+            id="title"
+            name="listing[title]"
+            placeholder="e.g. Cozy Beachfront Villa with Infinity Pool"
             required
           />
           <div class="invalid-feedback">
-            Please enter a country.
+            Please provide a descriptive title for your place.
           </div>
         </div>
 
-        <div class="col-md-8 mb-3">
-          <label for="location" class="form-label">Location</label>
-          <input
-            type="text"
+        <!-- DESCRIPTION -->
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea
             class="form-control"
-            id="location"
-            name="listing[location]"
-            placeholder="Goa"
+            id="description"
+            name="listing[description]"
+            rows="4"
+            placeholder="Describe what makes your space special, nearby attractions, amenities..."
             required
-          />
+          ></textarea>
           <div class="invalid-feedback">
-            Please enter a location.
+            Please enter a description for your listing.
           </div>
         </div>
-      </div>
 
-      <button class="btn btn-dark add-btn mt-2">Add Listing</button>
-    </form>
+        <!-- IMAGE URL -->
+        <div class="mb-3">
+          <label for="image" class="form-label">Image URL</label>
+          <div class="input-group">
+            <span class="input-group-text bg-light"><i class="fa-regular fa-image text-secondary"></i></span>
+            <input
+              type="text"
+              class="form-control"
+              id="image"
+              name="listing[image][url]"
+              placeholder="https://images.unsplash.com/photo-..."
+            />
+          </div>
+          <div class="form-text text-muted">
+            Paste a high-resolution image URL (Unsplash, Cloudinary, etc.)
+          </div>
+        </div>
+
+        <!-- PRICE & CATEGORY ROW -->
+        <div class="row">
+          <div class="col-12 col-md-6 mb-3">
+            <label for="price" class="form-label">Price per night (&#8377;)</label>
+            <div class="input-group">
+              <span class="input-group-text bg-light">&#8377;</span>
+              <input
+                type="number"
+                class="form-control"
+                id="price"
+                name="listing[price]"
+                placeholder="2500"
+                min="1"
+                required
+              />
+              <div class="invalid-feedback">
+                Please enter a valid price greater than 0.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 mb-3">
+            <label for="category" class="form-label">Category</label>
+            <select name="listing[category]" id="category" class="form-select">
+              <option value="Trending">🔥 Trending</option>
+              <option value="Rooms">🛏️ Rooms</option>
+              <option value="Iconic Cities">🏙️ Iconic Cities</option>
+              <option value="Mountains">⛰️ Mountains</option>
+              <option value="Castles">🏰 Castles</option>
+              <option value="Amazing Pools">🏊 Amazing Pools</option>
+              <option value="Camping">⛺ Camping</option>
+              <option value="Farms">🚜 Farms</option>
+              <option value="Arctic">❄️ Arctic</option>
+              <option value="Domes">🛖 Domes</option>
+              <option value="Boats">⛵ Boats</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- LOCATION & COUNTRY ROW -->
+        <div class="row">
+          <div class="col-12 col-md-7 mb-3">
+            <label for="location" class="form-label">City / Location</label>
+            <input
+              type="text"
+              class="form-control"
+              id="location"
+              name="listing[location]"
+              placeholder="e.g. North Goa, Candolim"
+              required
+            />
+            <div class="invalid-feedback">
+              Please enter the city or location.
+            </div>
+          </div>
+
+          <div class="col-12 col-md-5 mb-3">
+            <label for="country" class="form-label">Country</label>
+            <input
+              type="text"
+              class="form-control"
+              id="country"
+              name="listing[country]"
+              placeholder="e.g. India"
+              required
+            />
+            <div class="invalid-feedback">
+              Please enter a country name.
+            </div>
+          </div>
+        </div>
+
+        <!-- SUBMIT BUTTON -->
+        <div class="d-grid mt-4">
+          <button class="btn btn-primary-custom py-2 fs-6">
+            <i class="fa-solid fa-plus-circle me-1"></i> Publish Listing
+          </button>
+        </div>
+      </form>
+
+    </div>
   </div>
 </div>

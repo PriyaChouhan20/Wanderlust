@@ -1,86 +1,89 @@
 <% layout("/layouts/boilerplate") %>
 
-<div class="row mt-3">
-    <div class="col-12 col-md-6 offset-md-3">
+<div class="row justify-content-center mt-3 mb-5">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+        <div class="form-card-container">
 
-        <h1>SignUp on Wanderlust</h1>
-
-        <form action="/signup" method="POST" class="needs-validation" novalidate>
-
-            <!-- Username -->
-            <div class="mb-3">
-                <label for="username" class="form-label">
-                    Username
-                </label>
-
-                <input
-                    name="username"
-                    id="username"
-                    type="text"
-                    class="form-control"
-                    required
-                />
-
-                <div class="valid-feedback">
-                    Looks good!
+            <div class="form-header">
+                <div class="form-header-icon">
+                    <i class="fa-solid fa-user-plus"></i>
                 </div>
-
-                <div class="invalid-feedback">
-                    Please enter a username.
-                </div>
+                <h2>Create Your Account</h2>
+                <p>Join Wanderlust to explore homes or host travelers</p>
             </div>
 
-
-            <!-- Email -->
-            <div class="mb-3">
-                <label for="email" class="form-label">
-                    Email
-                </label>
-
-                <input
-                    name="email"
-                    id="email"
-                    type="email"
-                    class="form-control"
-                    required
-                />
-
-                <div class="valid-feedback">
-                    Looks good!
+            <form action="/signup" method="POST" class="needs-validation" novalidate>
+                <!-- Username -->
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light"><i class="fa-regular fa-user text-secondary"></i></span>
+                        <input
+                            name="username"
+                            id="username"
+                            type="text"
+                            class="form-control"
+                            placeholder="Choose a unique username"
+                            required
+                        />
+                    </div>
+                    <div class="invalid-feedback">
+                        Please enter a valid username.
+                    </div>
                 </div>
 
-                <div class="invalid-feedback">
-                    Please enter a valid email.
+                <!-- Email -->
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email Address</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light"><i class="fa-regular fa-envelope text-secondary"></i></span>
+                        <input
+                            name="email"
+                            id="email"
+                            type="email"
+                            class="form-control"
+                            placeholder="name@example.com"
+                            required
+                        />
+                    </div>
+                    <div class="invalid-feedback">
+                        Please enter a valid email address.
+                    </div>
                 </div>
-            </div>
 
-
-            <!-- Password -->
-            <div class="mb-3">
-                <label for="password" class="form-label">
-                    Password
-                </label>
-
-                <input
-                    name="password"
-                    id="password"
-                    type="password"
-                    class="form-control"
-                    required
-                />
-
-                <div class="invalid-feedback">
-                    Please enter a password.
+                <!-- Password -->
+                <div class="mb-4">
+                    <label for="password" class="form-label">Password</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light"><i class="fa-solid fa-lock text-secondary"></i></span>
+                        <input
+                            name="password"
+                            id="password"
+                            type="password"
+                            class="form-control"
+                            placeholder="Create a strong password"
+                            required
+                        />
+                    </div>
+                    <div class="invalid-feedback">
+                        Please enter a password.
+                    </div>
                 </div>
-            </div>
 
+                <!-- Submit Button -->
+                <div class="d-grid mb-3">
+                    <button class="btn btn-primary-custom py-2 fs-6">
+                        <i class="fa-solid fa-user-check me-1"></i> Complete Sign Up
+                    </button>
+                </div>
 
-            <!-- Button -->
-            <button class="btn btn-success">
-                SignUp
-            </button>
+                <!-- Login Switcher -->
+                <div class="text-center pt-3 border-top">
+                    <span class="text-secondary small">Already have an account?</span>
+                    <a href="/login" class="text-danger fw-bold ms-1 small">Log in</a>
+                </div>
+            </form>
 
-        </form>
-
+        </div>
     </div>
 </div>
