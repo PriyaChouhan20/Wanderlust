@@ -1,0 +1,329 @@
+body {
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    flex: 1;
+}
+
+/* =====================================
+   NAVBAR
+   ===================================== */
+.navbar {
+    height: 5rem;
+    background-color: #ffffff;
+}
+
+.fa-compass {
+    color: #fe424d;
+    font-size: 2rem;
+}
+
+.nav-link {
+    color: #222222 !important;
+    font-size: 0.95rem;
+}
+
+.nav-link:hover {
+    color: #fe424d !important;
+}
+
+.search-inp {
+    border-radius: 25px;
+    padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+    font-size: 0.9rem;
+}
+
+.btn-search {
+    background-color: #fe424d;
+    color: #ffffff;
+    border-radius: 25px;
+    padding: 0 1rem 0 1rem;
+    margin-left: -2.5rem;
+    border: none;
+    z-index: 10;
+}
+
+.btn-search:hover {
+    background-color: #e0313c;
+    color: #ffffff;
+}
+
+.btn-search i {
+    display: inline;
+    margin-right: 0.5rem;
+}
+
+/* =====================================
+   FILTERS & TAX TOGGLE
+   ===================================== */
+#filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    gap: 1rem;
+}
+
+.filter-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 1.5rem;
+    scrollbar-width: none; /* Firefox */
+}
+
+.filter-wrapper::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.filter {
+    text-align: center;
+    opacity: 0.7;
+    text-decoration: none;
+    color: #222222;
+    min-width: 4rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.filter:hover,
+.active-filter {
+    opacity: 1;
+    cursor: pointer;
+    border-bottom: 2px solid #222222;
+    color: #fe424d;
+}
+
+.filter div {
+    font-size: 1.2rem;
+}
+
+.filter p {
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.tax-toggle {
+    border: 1px solid #dee2e6;
+    border-radius: 1rem;
+    height: 3.25rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.tax-info {
+    display: none;
+}
+
+/* =====================================
+   CARDS
+   ===================================== */
+.card {
+    border: none !important;
+    margin-bottom: 1.5rem;
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+.card-img-top {
+    width: 100% !important;
+    height: 18rem !important;
+    object-fit: cover !important;
+    border-radius: 1rem !important;
+}
+
+.card-body {
+    padding: 0.5rem 0 !important;
+}
+
+.card-text {
+    font-size: 0.95rem;
+    color: #222222;
+}
+
+.listing-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* =====================================
+   SHOW PAGE
+   ===================================== */
+.show-card {
+    border: none !important;
+}
+
+.show-img {
+    height: 20rem !important;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+
+.btns {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.edit-btn {
+    background-color: #fe424d !important;
+    border: none !important;
+    color: #ffffff !important;
+}
+
+.edit-btn:hover {
+    background-color: #e0313c !important;
+}
+
+/* =====================================
+   STARABILITY STAR RATING (SLOT & RESULT)
+   ===================================== */
+.starability-slot,
+.starability-result {
+    display: block;
+    position: relative;
+    width: 100px;
+    min-height: 20px;
+    padding: 0;
+    border: none;
+}
+
+.starability-slot > input {
+    position: absolute;
+    margin-right: -100%;
+    opacity: 0;
+}
+
+.starability-slot > input:checked ~ label,
+.starability-slot > input:focus ~ label {
+    background-position: 0 0;
+}
+
+.starability-slot > label {
+    position: relative;
+    float: right;
+    width: 20px;
+    height: 20px;
+    color: transparent;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23feb700'%3e%3cpath d='M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: 0 -20px;
+}
+
+.starability-slot > label:hover,
+.starability-slot > label:hover ~ label {
+    background-position: 0 0 !important;
+}
+
+.starability-slot > input:checked + label {
+    background-position: 0 0;
+}
+
+.starability-result {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23feb700'%3e%3cpath d='M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z'/%3e%3c/svg%3e");
+    background-repeat: repeat-x;
+    background-size: 20px 20px;
+    height: 20px;
+}
+
+.starability-result[data-rating="1"] { width: 20px; }
+.starability-result[data-rating="2"] { width: 40px; }
+.starability-result[data-rating="3"] { width: 60px; }
+.starability-result[data-rating="4"] { width: 80px; }
+.starability-result[data-rating="5"] { width: 100px; }
+
+/* =====================================
+   FOOTER
+   ===================================== */
+footer {
+    margin-top: auto;
+}
+
+.f-info {
+    height: 8rem;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-top: 1px solid #e9ecef;
+}
+
+.f-info-socials,
+.f-info-links {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.f-info-socials i {
+    font-size: 1.25rem;
+    color: #495057;
+    transition: color 0.2s;
+}
+
+.f-info-socials i:hover {
+    color: #fe424d;
+}
+
+.f-info-brand {
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin: 0.4rem 0;
+}
+
+.f-info-links a {
+    text-decoration: none;
+    color: #495057;
+    font-size: 0.85rem;
+}
+
+.f-info-links a:hover {
+    text-decoration: underline;
+}
+
+/* =====================================
+   MAP STYLES
+   ===================================== */
+#map {
+    width: 100%;
+    height: 400px;
+    border-radius: 12px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #e2e8f0;
+}
+
+.mapboxgl-popup-content {
+    padding: 12px 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.mapboxgl-popup-content h6 {
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #222222;
+}
+
+.mapboxgl-popup-content p {
+    margin-bottom: 0;
+    font-size: 0.85rem;
+    color: #666666;
+}
