@@ -1,17 +1,26 @@
 {
   "name": "majorproject",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Wanderlust - Airbnb-inspired property listing platform",
+  "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "wanderlust",
+    "nodejs",
+    "express",
+    "mongodb",
+    "ejs"
+  ],
+  "author": "Priya Chouhan",
   "license": "ISC",
   "type": "commonjs",
+  "engines": {
+    "node": "24.15.0"
+  },
   "dependencies": {
     "connect-flash": "^0.1.1",
     "connect-mongo": "^6.0.0",
